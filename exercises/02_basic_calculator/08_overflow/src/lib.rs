@@ -1,9 +1,9 @@
-// Customize the `dev` profile to wrap around on overflow.
-// Check Cargo's documentation to find out the right syntax:
+// 自定义 `dev` 配置文件，使其在溢出时进行回绕（wrap around）。
+// 请查阅 Cargo 文档以找到正确的语法：
 // https://doc.rust-lang.org/cargo/reference/profiles.html
 //
-// For reasons that we'll explain later, the customization needs to be done in the `Cargo.toml`
-// at the root of the repository, not in the `Cargo.toml` of the exercise.
+// 出于我们稍后会解释的原因，自定义需要在仓库根目录的 `Cargo.toml` 中进行，
+// 而不是在该练习的 `Cargo.toml` 中。
 
 pub fn factorial(n: u32) -> u32 {
     let mut result = 1;
@@ -19,12 +19,12 @@ mod tests {
 
     #[test]
     fn twentieth() {
-        // 20! is 2432902008176640000, which is too large to fit in a u32
-        // With the default dev profile, this will panic when you run `cargo test`
-        // We want it to wrap around instead
+        // 20! 等于 2432902008176640000，这个数太大了，无法放入 u32
+        // 在默认的 dev 配置文件下，运行 `cargo test` 时会发生 panic
+        // 我们希望它改为回绕（wrap around）
         assert_eq!(factorial(20), 2_192_834_560);
         //                           ☝️
-        // A large number literal using underscores to improve readability!
+        // 使用下划线提高大数字字面量的可读性！
     }
 
     #[test]
