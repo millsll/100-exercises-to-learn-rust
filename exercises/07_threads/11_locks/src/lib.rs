@@ -1,6 +1,6 @@
-// TODO: Fill in the missing methods for `TicketStore`.
-//  Notice how we no longer need a separate update command: `Get` now returns a handle to the ticket
-//  which allows the caller to both modify and read the ticket.
+// TODO: 为 `TicketStore` 补充缺失的方法。
+//  注意我们不再需要单独的更新命令：`Get` 现在返回一个 ticket 的句柄，
+//  调用者可以通过它来修改和读取 ticket。
 use std::sync::mpsc::{sync_channel, Receiver, SyncSender, TrySendError};
 use std::sync::{Arc, Mutex};
 
@@ -79,8 +79,8 @@ pub fn server(receiver: Receiver<Command>) {
                 let _ = response_channel.send(ticket);
             }
             Err(_) => {
-                // There are no more senders, so we can safely break
-                // and shut down the server.
+                // 没有更多的发送者了，因此我们可以安全地退出
+                // 并关闭服务器。
                 break;
             }
         }
