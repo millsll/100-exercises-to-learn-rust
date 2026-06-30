@@ -1,21 +1,25 @@
-// TODO: use `Status` as type for `Ticket::status`
-//   Adjust the signature and implementation of all other methods as necessary.
+// TODO: 使用 `Status` 作为 `Ticket::status` 的类型
+//   根据需要调整所有其他方法的签名和实现。
 
 #[derive(Debug, PartialEq)]
-// `derive`s are recursive: it can only derive `PartialEq` if all fields also implement `PartialEq`.
-// Same holds for `Debug`. Do what you must with `Status` to make this work.
+// derive 是递归的：只有当所有字段也实现了 `PartialEq` 时，才能派生 `PartialEq`。
+// `Debug` 也是如此。请对 `Status` 做必要的操作以使这能够工作。
 struct Ticket {
     title: String,
     description: String,
-    status: String,
+    status: Status,
 }
 
+#[derive(Debug,PartialEq,Clone,Copy)]
 enum Status {
-    // TODO: add the missing variants
+    // TODO: 添加缺失的变体
+    ToDo,
+    InProgress,
+    Done,
 }
 
 impl Ticket {
-    pub fn new(title: String, description: String, status: String) -> Ticket {
+    pub fn new(title: String, description: String, status: Status) -> Ticket {
         if title.is_empty() {
             panic!("Title cannot be empty");
         }
@@ -28,7 +32,7 @@ impl Ticket {
         if description.len() > 500 {
             panic!("Description cannot be longer than 500 bytes");
         }
-        if status != "To-Do" && status != "In Progress" && status != "Done" {
+        if status != Status::ToDo && status != Status::InProgress && status != Status::Done {
             panic!("Only `To-Do`, `In Progress`, and `Done` statuses are allowed");
         }
 
@@ -47,7 +51,7 @@ impl Ticket {
         &self.description
     }
 
-    pub fn status(&self) -> &String {
+    pub fn status(&self) -> &Status {
         &self.status
     }
 }

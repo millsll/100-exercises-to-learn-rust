@@ -1,26 +1,23 @@
-// TODO: you have something to do in each of the modules in this crate!
+// TODO: 你需要在这个 crate 的每个模块中完成一些工作！
 mod description;
 mod status;
 mod title;
 
-// A common pattern in Rust is to split code into multiple (private) modules
-// and then re-export the public parts of those modules at the root of the crate.
+// Rust 中的一个常见模式是将代码分割成多个（私有）模块，
+// 然后在 crate 的根目录重新导出这些模块的公共部分。
 //
-// This hides the internal structure of the crate from your users, while still
-// allowing you to organize your code however you like.
+// 这样可以向用户隐藏 crate 的内部结构，同时仍然允许你按照自己的喜好组织代码。
 pub use description::TicketDescription;
 pub use status::Status;
 pub use title::TicketTitle;
 
 #[derive(Debug, PartialEq, Clone)]
-// We no longer need to make the fields private!
-// Since each field encapsulates its own validation logic, there is no risk of
-// a user of `Ticket` modifying the fields in a way that would break the
-// invariants of the struct.
+// 我们不再需要将字段设为私有了！
+// 因为每个字段都封装了自己的验证逻辑，所以 `Ticket` 的用户
+// 不会有以破坏结构体不变量的方式修改字段的风险。
 //
-// Careful though: if you had any invariants that spanned multiple fields, you
-// would need to ensure that those invariants are still maintained and go back
-// to making the fields private.
+// 但要注意：如果你的不变量跨越多个字段，你需要确保这些不变量仍然被维护，
+// 并将字段恢复为私有。
 pub struct Ticket {
     pub title: TicketTitle,
     pub description: TicketDescription,
