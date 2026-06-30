@@ -1,6 +1,12 @@
-// TODO: Define a function named `squared` that raises all `i32`s within a slice to the power of 2.
-//  The slice should be modified in place.
-
+// TODO: 定义一个名为 `squared` 的函数，将切片中的所有 `i32` 平方。
+//  切片应该被就地修改。
+pub fn squared(slice:&mut[i32]){
+    let n:usize=slice.len();
+    for i in 0..n{
+        slice[i]=slice[i]*slice[i];
+    }
+    //slice.iter_mut().for_each(|x|*x=*x*(*x));
+}
 #[cfg(test)]
 mod tests {
     use super::*;

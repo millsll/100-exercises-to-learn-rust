@@ -1,21 +1,29 @@
-// Given a number `n`, return the `n+1`th number in the Fibonacci sequence.
+// 给定一个数字 `n`，返回 Fibonacci 序列中的第 `n+1` 个数字。
 //
-// The Fibonacci sequence is defined as follows:
+// Fibonacci 序列的定义如下：
 //
-// - The first number of the sequence is 0.
-// - The second number of the sequence is 1.
-// - Every subsequent number is the sum of the two preceding numbers.
+// - 序列的第一个数字是 0。
+// - 序列的第二个数字是 1。
+// - 每个后续数字都是前两个数字的和。
 //
-// So the sequence goes: 0, 1, 1, 2, 3, 5, 8, 13, 21, and so on.
+// 所以序列是：0, 1, 1, 2, 3, 5, 8, 13, 21, 以此类推。
 //
-// We expect `fibonacci(0)` to return `0`, `fibonacci(1)` to return `1`,
-// `fibonacci(2)` to return `1`, and so on.
+// 我们期望 `fibonacci(0)` 返回 `0`，`fibonacci(1)` 返回 `1`，
+// `fibonacci(2)` 返回 `1`，以此类推。
 pub fn fibonacci(n: u32) -> u32 {
-    // TODO: implement the `fibonacci` function
-    //
-    // Hint: use a `Vec` to memoize the results you have already calculated
-    // so that you don't have to recalculate them several times.
-    todo!()
+    if n==0{
+        return 0;
+    }
+    if n==1{
+        return 1;
+    }
+    let n=n as usize;
+    let mut fibs=vec![0u32,1u32];
+    for i in 2..=n{
+        fibs.push(fibs[i-1]+fibs[i-2]);
+    }
+    fibs[n]
+
 }
 
 #[cfg(test)]

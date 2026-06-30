@@ -1,6 +1,13 @@
-// TODO: Define a function named `sum` that takes a reference to a slice of `u32` and returns the sum of all
-//  elements in the slice.
-
+// TODO: 定义一个名为 `sum` 的函数，它接受一个 `u32` 切片的引用，并返回切片中所有
+//  元素的总和。
+pub fn sum(slice:&[u32])->u32{
+    let n:usize=slice.len();
+    let mut s:u32=0;
+    for i in 0..n{
+        s+=slice[i];
+    }
+    s
+}
 #[cfg(test)]
 mod tests {
     use super::*;
